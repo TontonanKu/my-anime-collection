@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Movie } from '../types/movie';
+import type { Movie } from '../types/movie';
 
 interface HeroProps {
   movies?: Movie[];
