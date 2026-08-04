@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Gallery Macabre design tokens (from Stitch design system) */
+  --color-primary: #91000a;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #b71c1c;
+  --color-on-primary-container: #ffcac4;
+
+  --color-secondary: #666666;
+  --color-on-surface: #111111;
+  --color-on-surface-variant: #5b403d;
+
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f9f9f9;
+  --color-surface-container: #f5f5f5;
+  --color-surface-container-high: #ececec;
+  --color-surface-variant: #ececec;
+  --color-outline: #8f706c;
+  --color-outline-variant: #ececec;
+  --color-border: #ececec;
+
+  --font-display: "Manrope", sans-serif;
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --spacing-container-padding: 24px;
+  --spacing-stack-gap: 32px;
+  --spacing-grid-gutter: 16px;
+  --spacing-section-margin: 48px;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  antialiased: true;
+  overscroll-behavior-y: none;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  line-height: 1;
+}
+
+.fog-overlay {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 75%, rgba(255, 255, 255, 1) 100%);
+}
+
+.fog-gradient {
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.ambient-shadow {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+}
+
+.ambient-shadow-sm {
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.08);
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* App shell — constrains the app to a mobile viewport on larger screens */
+.app-shell {
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100dvh;
+  background-color: var(--color-background);
+  position: relative;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 431px) {
+  #root {
+    background-color: #f2f2f2;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}

@@ -1,0 +1,365 @@
+[
+  {
+    "id": 9,
+    "title": "Abadi Nan Jaya",
+    "year": 2025,
+    "genre": [
+      "Zombie",
+      "Action Horror",
+      "Thriller"
+    ],
+    "duration": "110 min",
+    "durationMinutes": 110,
+    "rating": 8.1,
+    "personalRating": 4.5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BY2Y3ZGFmMjAtNGI3MS00MGNkLWI4MWYtOWNhNDhiN2Q3MWNhXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BY2Y3ZGFmMjAtNGI3MS00MGNkLWI4MWYtOWNhNDhiN2Q3MWNhXkEyXkFqcGc@._V1_.jpg",
+    "description": "Berlatar di sebuah desa bersejarah di dekat Yogyakarta, eksperimen jamur dan ramuan tradisional berubah menjadi bencana mengerikan, memicu wabah zombie agresif dan buas yang menguji kesetiaan keluarga serta adat kebiasaan kuno.",
+    "note": "",
+    "favorite": true,
+    "tag": "ZOMBIE"
+  },
+  {
+    "id": 10,
+    "title": "Pengabdi Setan",
+    "year": 2017,
+    "genre": [
+      "Supernatural Horror",
+      "Mystery"
+    ],
+    "duration": "107 min",
+    "durationMinutes": 107,
+    "rating": 8,
+    "personalRating": 5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZWQ5ZTcwNDEtYTQ1MS00MTlmLTlhYTUtNWU1YWFkMDMwMjAzXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BZWQ5ZTcwNDEtYTQ1MS00MTlmLTlhYTUtNWU1YWFkMDMwMjAzXkEyXkFqcGc@._V1_.jpg",
+    "description": "Setelah menderita sakit misterius yang membuatnya lumpuh selama tiga tahun, sang ibu akhirnya meninggal dunia. Namun tak lama kemudian, anak-anaknya menyadari bahwa sang ibu telah kembali—bukan untuk sekadar berkunjung, melainkan untuk menjemput dan membawa mereka pergi akibat perjanjian kelam dengan sekte pengabdi setan.",
+    "note": "",
+    "favorite": true,
+    "tag": "SUPERNATURAL"
+  },
+  {
+    "id": 11,
+    "title": "Ratu Ilmu Hitam",
+    "year": 2019,
+    "genre": [
+      "Body Horror",
+      "Supernatural Horror"
+    ],
+    "duration": "99 min",
+    "durationMinutes": 99,
+    "rating": 7.5,
+    "personalRating": 4.5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMmU4MDkwNzMtNTIyMS00YjgwLThhZjctMzBiYzRkMTViMjdkXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMmU4MDkwNzMtNTIyMS00YjgwLThhZjctMzBiYzRkMTViMjdkXkEyXkFqcGc@._V1_.jpg",
+    "description": "Bertahun-tahun pasca meninggalkan panti asuhan, sekelompok sahabat berkunjung kembali untuk menjenguk pengasuh mereka yang sedang sakit keras. Namun kunjungan penuh nostalgia itu berubah menjadi teror santet sadis, ilmu hitam, dan pembalasan dendam atas dosa berdarah yang terkubur di masa lalu.",
+    "note": "",
+    "favorite": true,
+    "tag": "BLACK MAGIC"
+  },
+  {
+    "id": 12,
+    "title": "Sebelum Iblis Menjemput",
+    "year": 2018,
+    "genre": [
+      "Supernatural Horror",
+      "Gore",
+      "Thriller"
+    ],
+    "duration": "110 min",
+    "durationMinutes": 110,
+    "rating": 7.2,
+    "personalRating": 4,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BYTYxZjM0N2UtZWMwOC00ZGU2LWIxNTAtODc1OGRhNmVlYzgyXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BYTYxZjM0N2UtZWMwOC00ZGU2LWIxNTAtODc1OGRhNmVlYzgyXkEyXkFqcGc@._V1_.jpg",
+    "description": "Ketika sang ayah tiba-tiba jatuh koma secara misterius dengan sekarat maut yang mengerikan, Alfie dan saudara tiri yang berlawanan dengannya mengunjungi villa tua miliknya di hutan terpencil, hanya untuk membangkitkan entitas iblis haus darah yang menuntut janji kelam masa lampau.",
+    "note": "",
+    "favorite": false,
+    "tag": "SUPERNATURAL"
+  },
+  {
+    "id": 13,
+    "title": "Siksa Kubur",
+    "year": 2024,
+    "genre": [
+      "Psychological Horror",
+      "Religious Horror"
+    ],
+    "duration": "117 min",
+    "durationMinutes": 117,
+    "rating": 7.8,
+    "personalRating": 4.5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzdkZmQ2MjUtOTdiMC00ODQ4LThlYmMtZDU3YjY1NDRlNTM3XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNzdkZmQ2MjUtOTdiMC00ODQ4LThlYmMtZDU3YjY1NDRlNTM3XkEyXkFqcGc@._V1_.jpg",
+    "description": "Diterjang trauma berat akibat kematian orang tuanya saat insiden bom bunuh diri, Sita tumbuh menjadi pribadi yang apatis dan menentang ajaran agama. Saat seorang pria berdosa meninggal dunia, Sita nekat mengubur dirinya di dalam liang lahat untuk membuktikan bahwa siksa kubur itu tidak nyata—dengan konsekuensi eksistensial yang mengerikan.",
+    "note": "",
+    "favorite": true,
+    "tag": "PSYCHOLOGICAL"
+  },
+  {
+    "id": 14,
+    "title": "Pabrik Gula",
+    "year": 2025,
+    "genre": [
+      "Supernatural Horror",
+      "Urban Legend"
+    ],
+    "duration": "105 min",
+    "durationMinutes": 105,
+    "rating": 7.3,
+    "personalRating": 4,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjJjZDk1ZDAtZjA1Ny00ZWYzLTkwZTMtZDRhY2U2YjdmMzkyXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BZjJjZDk1ZDAtZjA1Ny00ZWYzLTkwZTMtZDRhY2U2YjdmMzkyXkEyXkFqcGc@._V1_.jpg",
+    "description": "Sekelompok pekerja malam di sebuah pabrik gula kuno peninggalan era kolonial Belanda mulai mengalami peristiwa mistis, hingga mereka menyadari bahwa mesin-mesin uap raksasa yang beroperasi di sana digerakkan oleh sesuatu yang jauh lebih kelam dari sekadar uap panas, membangunkan arwah-arwah yang terbelenggu.",
+    "note": "",
+    "favorite": false,
+    "tag": "URBAN LEGEND"
+  },
+  {
+    "id": 15,
+    "title": "Alas Roban",
+    "year": 2025,
+    "genre": [
+      "Folk Horror",
+      "Supernatural Horror"
+    ],
+    "duration": "102 min",
+    "durationMinutes": 102,
+    "rating": 7.1,
+    "personalRating": 3.5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BOTcxZDYxYjQtYzM5MC00OTcxLWFmMzMtM2M5YzA1OWNmMTE0XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BOTcxZDYxYjQtYzM5MC00OTcxLWFmMzMtM2M5YzA1OWNmMTE0XkEyXkFqcGc@._V1_.jpg",
+    "description": "Perjalanan melintasi rute pintas di kawasan hutan angker Alas Roban berujung pada teror supranatural saat sebuah rombongan terperangkap di jalur gaib tanpa ujung, di mana entitas astral dan legenda mistis setempat mengincar siapa pun yang merusak kesucian hutan.",
+    "note": "",
+    "favorite": false,
+    "tag": "FOLK HORROR"
+  },
+  {
+    "id": 16,
+    "title": "Racun Sangga: Santet Pemisah Rumah Tangga",
+    "year": 2024,
+    "genre": [
+      "Supernatural Horror",
+      "Occult Drama"
+    ],
+    "duration": "110 min",
+    "durationMinutes": 110,
+    "rating": 7.4,
+    "personalRating": 4,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMzQ3YzEyMjAtZDNhNC00MjQ1LTgxOWItNTNkMGMwZjA4NDBhXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMzQ3YzEyMjAtZDNhNC00MjQ1LTgxOWItNTNkMGMwZjA4NDBhXkEyXkFqcGc@._V1_.jpg",
+    "description": "Kehidupan sepasang pengantin baru yang semula harmonis perlahan berubah menjadi mimpi buruk mencekam akibat teror 'Racun Sangga'—salah satu jenis santet paling ganas dan mematikan asal Kalimantan yang dirancang khusus untuk menyiksa dan memisahkan sepasang suami istri dengan kejam.",
+    "note": "",
+    "favorite": false,
+    "tag": "BLACK MAGIC"
+  },
+  {
+    "id": 17,
+    "title": "Sumala",
+    "year": 2024,
+    "genre": [
+      "Supernatural Horror",
+      "Mystery",
+      "Historical Horror"
+    ],
+    "duration": "113 min",
+    "durationMinutes": 113,
+    "rating": 7.5,
+    "personalRating": 4,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BYjdlMTNjZTYtOWJhMi00YWE5LWJhOGItYTllYjU0NWJmOTE0XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BYjdlMTNjZTYtOWJhMi00YWE5LWJhOGItYTllYjU0NWJmOTE0XkEyXkFqcGc@._V1_.jpg",
+    "description": "Berlatar tahun 1948 di Kabupaten Semarang, seorang istri yang putus asa bersekutu dengan kekuatan gaib demi mendapatkan keturunan. Namun perjanjian itu menghadirkan bayi kembar: Kumala yang polos, serta Sumala—entitas jahat yang berkeliaran di malam hari untuk meneror dan membalas dendam.",
+    "note": "",
+    "favorite": true,
+    "tag": "SUPERNATURAL"
+  },
+  {
+    "id": 18,
+    "title": "Sewu Dino",
+    "year": 2023,
+    "genre": [
+      "Supernatural Horror",
+      "Curse"
+    ],
+    "duration": "121 min",
+    "durationMinutes": 121,
+    "rating": 7.2,
+    "personalRating": 4,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZTg0Y2UxYTUtMDE5My00M2VkLWE1Y2QtZmM0ZDQ3M2JjMDZlXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BZTg0Y2UxYTUtMDE5My00M2VkLWE1Y2QtZmM0ZDQ3M2JjMDZlXkEyXkFqcGc@._V1_.jpg",
+    "description": "Sri, seorang gadis dengan hari lahir yang unik, diterima bekerja sebagai perawat dengan bayaran tinggi. Ia dibawa ke sebuah pondok di tengah hutan belantara untuk melakukan ritual pembersihan santet 'Sewu Dino' (Seribu Hari) pada seorang gadis yang terjebak kutukan ilmu hitam mematikan.",
+    "note": "",
+    "favorite": false,
+    "tag": "BLACK MAGIC"
+  },
+  {
+    "id": 19,
+    "title": "Di Ambang Kematian",
+    "year": 2023,
+    "genre": [
+      "Supernatural Horror",
+      "Occult"
+    ],
+    "duration": "97 min",
+    "durationMinutes": 97,
+    "rating": 7.3,
+    "personalRating": 4,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BN2FkZTgxNGEtNDk5YS00OWU5LTlhZmEtY2FmZDMwN2MwOTY2XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BN2FkZTgxNGEtNDk5YS00OWU5LTlhZmEtY2FmZDMwN2MwOTY2XkEyXkFqcGc@._V1_.jpg",
+    "description": "Seorang gadis remaja menemukan fakta mengerikan bahwa kekayaan keluarganya berawal dari pesugihan yang dilakukan oleh sang ayah dengan menumbalkan nyawa manusia setiap sepuluh tahun sekali. Setelah ibu dan kakak perempuannya tiada, ia sadar bahwa giliran hidupnya tinggal menghitung waktu.",
+    "note": "",
+    "favorite": false,
+    "tag": "SUPERNATURAL"
+  },
+  {
+    "id": 20,
+    "title": "Menjelang Ajal",
+    "year": 2024,
+    "genre": [
+      "Supernatural Horror",
+      "Family Horror"
+    ],
+    "duration": "96 min",
+    "durationMinutes": 96,
+    "rating": 7,
+    "personalRating": 3.5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BOGY5ZDA0MmItOGY3Ny00YTkzLTkwNzYtMjc2YTEzZjQ4M2I4XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BOGY5ZDA0MmItOGY3Ny00YTkzLTkwNzYtMjc2YTEzZjQ4M2I4XkEyXkFqcGc@._V1_.jpg",
+    "description": "Sekar, seorang ibu yang diam-diam mengandalkan bantuan sihir dari jin khodam demi melariskan warung makanannya, mendapati usahanya tiba-tiba membusuk. Ketika jin penglaris tersebut berbalik agresif menyiksa jiwa sang ibu, anak-anaknya berjuang mati-matian menyelamatkan nyawanya.",
+    "note": "",
+    "favorite": false,
+    "tag": "SUPERNATURAL"
+  },
+  {
+    "id": 21,
+    "title": "Santet Segoro Pitu",
+    "year": 2024,
+    "genre": [
+      "Supernatural Horror",
+      "Black Magic"
+    ],
+    "duration": "95 min",
+    "durationMinutes": 95,
+    "rating": 7.2,
+    "personalRating": 3.5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTczOGUzOWYtOTY5OS00NjJjLTk4M2YtODhiYTkwZTg3ZTRlXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMTczOGUzOWYtOTY5OS00NjJjLTk4M2YtODhiYTkwZTg3ZTRlXkEyXkFqcGc@._V1_.jpg",
+    "description": "Ardi, seorang mahasiswa yang memiliki sensitivitas supranatural, terpaksa bergegas pulang ketika ayah dan seluruh anggota keluarganya muntah darah akibat diserang 'Santet Segoro Pitu'—ilmu hitam berdaya tinggi yang memanfaatkan energi dari Tujuh Samudra akibat persaingan bisnis pasar.",
+    "note": "",
+    "favorite": false,
+    "tag": "BLACK MAGIC"
+  },
+  {
+    "id": 22,
+    "title": "Sorop",
+    "year": 2024,
+    "genre": [
+      "Supernatural Horror",
+      "Folklore"
+    ],
+    "duration": "98 min",
+    "durationMinutes": 98,
+    "rating": 7.1,
+    "personalRating": 3.5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMmJmM2FkN2YtYWY2ZC00MzFiLWExYmYtMGY5N2JmNGU5Y2Y4XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMmJmM2FkN2YtYWY2ZC00MzFiLWExYmYtMGY5N2JmNGU5Y2Y4XkEyXkFqcGc@._V1_.jpg",
+    "description": "'Sorop' menandakan waktu maghrib mencekam saat siang bertransition ke malam dan gerbang dunia gaib terbuka. Ketika seorang paman misterius tiba-tiba pulang ke rumah dalam keadaan tewas saat senja, dua bersaudara terperangkap di rumah tua saat entitas gelap mulai bangkit mengincar mereka.",
+    "note": "",
+    "favorite": false,
+    "tag": "FOLK HORROR"
+  },
+  {
+    "id": 23,
+    "title": "Pengantin Setan",
+    "year": 2024,
+    "genre": [
+      "Supernatural Horror",
+      "Romance Horror"
+    ],
+    "duration": "94 min",
+    "durationMinutes": 94,
+    "rating": 6.8,
+    "personalRating": 3,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzhkZWRmYzQtMmJiNC00MDE3LTk0ZTMtNWZkNDY1NTdiODI0XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNzhkZWRmYzQtMmJiNC00MDE3LTk0ZTMtNWZkNDY1NTdiODI0XkEyXkFqcGc@._V1_.jpg",
+    "description": "Di tengah hubungan pernikahan yang penuh rasa dingin dan keretakan, seorang istri mulai berulang kali digigit mimpi berinteraksi dengan makhluk gaib menawan. Saat garis antara dunia nyata dan halusinasi membaur, ia menyadari dirinya terjebak dalam akad nikah supranatural bersama entitas iblis.",
+    "note": "",
+    "favorite": false,
+    "tag": "SUPERNATURAL"
+  },
+  {
+    "id": 24,
+    "title": "Sukma",
+    "year": 2025,
+    "genre": [
+      "Supernatural Horror",
+      "Psychological"
+    ],
+    "duration": "100 min",
+    "durationMinutes": 100,
+    "rating": 7.3,
+    "personalRating": 4,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMzU5N2Q1ZTYtMjM4Ni00OTE4LWIwY2YtYjRmZDRjZGYxZjc0XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMzU5N2Q1ZTYtMjM4Ni00OTE4LWIwY2YtYjRmZDRjZGYxZjc0XkEyXkFqcGc@._V1_.jpg",
+    "description": "Teror horor psikologis yang menyelami fenomena keterpisahan jiwa dan kesurupan berantai, di mana seorang konselor trauma mendapati keberadaan entitas gaib purba yang bersemayam dalam kegelapan dan bertahan hidup dengan merobek-robek kesadaran serta trauma alam bawah sadar korbannya.",
+    "note": "",
+    "favorite": false,
+    "tag": "PSYCHOLOGICAL"
+  },
+  {
+    "id": 25,
+    "title": "Pamali: Dusun Pocong",
+    "year": 2023,
+    "genre": [
+      "Supernatural Horror",
+      "Folklore"
+    ],
+    "duration": "99 min",
+    "durationMinutes": 99,
+    "rating": 7,
+    "personalRating": 3.5,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZGM1ODhmYTgtYzYxYy00OTVhLTk2N2ItOWQ4OWVmZmI1MTFiXkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BZGM1ODhmYTgtYzYxYy00OTVhLTk2N2ItOWQ4OWVmZmI1MTFiXkEyXkFqcGc@._V1_.jpg",
+    "description": "Tiga petugas medis dan dua penggali kubur diterjunkan menuju dusun terpencil di pedalaman yang diisolasi akibat serangan wabah kolera mematikan. Akibat melanggar pantangan dan aturan adat gaib setempat (pamali), mereka harus menghadapi teror malam dari kepungan jenazah pocong yang bangkit mengamuk.",
+    "note": "",
+    "favorite": false,
+    "tag": "FOLKLORE"
+  },
+  {
+    "id": 26,
+    "title": "Jalan Pulang",
+    "year": 2025,
+    "genre": [
+      "Psychological Horror",
+      "Thriller"
+    ],
+    "duration": "104 min",
+    "durationMinutes": 104,
+    "rating": 7.4,
+    "personalRating": 4,
+    "status": "Watched",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNGYxMzBkMzQtNjM5ZS00ZTQ1LWJiM2EtYjVmNDE5NmQ2ZjU3XkEyXkFqcGc@._V1_.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNGYxMzBkMzQtNjM5ZS00ZTQ1LWJiM2EtYjVmNDE5NmQ2ZjU3XkEyXkFqcGc@._V1_.jpg",
+    "description": "Usai terlibat dalam kecelakaan fatal saat dini hari, sekelompok sahabat mencoba menyembunyikan jejak dan melarikan diri untuk menempuh jalan pulang. Namun, jalanan berkabut yang mereka lintasi berputar membelokkan ruang dan waktu, memaksa mereka menghadapi teror dari dosa yang coba ditinggal balik.",
+    "note": "",
+    "favorite": false,
+    "tag": "PSYCHOLOGICAL"
+  }
+]
