@@ -19,4 +19,8 @@ export interface Movie {
   note: string;
   favorite: boolean;
   tag: string;
+  altTitles?: string[];
+  progress?: string;
+  category?: 'Anime' | 'Donghua';
+  trailerId?: string;
 }

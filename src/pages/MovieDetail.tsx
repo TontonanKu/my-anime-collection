@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useMovies } from '../hooks/useMovies';
@@ -10,7 +11,11 @@ import { PageTransition } from '../components/PageTransition';
 export function MovieDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { getById, toggleFavorite, setNote, setPersonalRating, deleteMovie } = useMovies();
+  const { getById, toggleFavorite, setNote, setPersonalRating } = useMovies();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const movie = getById(Number(id));
 
@@ -95,7 +100,7 @@ export function MovieDetail() {
                 <span className="text-[14px] font-semibold text-on-surface">
                   {movie.rating.toFixed(1)}
                 </span>
-                <span className="text-[11px] text-secondary font-mono">IMDb</span>
+                <span className="text-[11px] text-secondary font-mono">AniList</span>
               </div>
               <span className="text-outline">•</span>
               <span className="font-mono text-[12px] text-secondary">{movie.year}</span>
@@ -123,10 +128,48 @@ export function MovieDetail() {
             <div className="w-full h-px bg-border mb-5" />
 
             {/* Synopsis */}
-            <div className="mb-8">
-              <h2 className="font-display font-bold text-[18px] text-on-surface mb-2">Synopsis</h2>
-              <p className="text-secondary leading-relaxed text-[15px]">{movie.description}</p>
+            <div className="mb-6">
+              <h2 className="font-display font-bold text-[18px] text-on-surface mb-2">Sinopsis</h2>
+              <p className="text-secondary leading-relaxed text-[15px]">{movie.description || 'Belum ada sinopsis.'}</p>
             </div>
+
+            {/* Trailer */}
+            {movie.trailerId && (
+              <div className="mb-6">
+                <h2 className="font-display font-bold text-[18px] text-on-surface mb-3 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-outline" style={{ fontSize: 20 }}>
+                    smart_display
+                  </span>
+                  Trailer
+                </h2>
+                <div className="w-full aspect-video rounded-xl overflow-hidden bg-surface-container-low ambient-shadow border border-border/40">
+                  <iframe
+                    className="w-full h-full"
+                    src={`https://www.youtube.com/embed/${movie.trailerId}`}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            )}
+
+            {/* Alt Titles */}
+            {movie.altTitles && movie.altTitles.length > 0 && (
+              <div className="mb-8">
+                <h2 className="font-display font-bold text-[15px] text-on-surface mb-2">Judul Alternatif</h2>
+                <div className="flex flex-wrap gap-2">
+                  {movie.altTitles.map((alt, i) => (
+                    <span
+                      key={i}
+                      className="text-[11px] font-mono text-secondary bg-surface-container px-2.5 py-1 rounded-lg border border-border/60"
+                    >
+                      {alt}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -144,22 +187,7 @@ export function MovieDetail() {
           />
         </div>
 
-        {/* Delete button for any film */}
-        <div className="mb-12 pt-6 border-t border-border/60">
-          <button
-            onClick={() => {
-              if (window.confirm('Yakin ingin menghapus film ini dari koleksi?')) {
-                deleteMovie(movie.id);
-                navigate('/');
-              }
-            }}
-            className="w-full bg-surface hover:bg-red-50 text-primary-container font-mono text-xs font-bold uppercase tracking-wider py-3.5 px-4 rounded-xl border border-border/80 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs"
-          >
-            <span className="material-symbols-outlined text-[18px]">delete</span>
-            <span>Delete Film from Collection</span>
-          </button>
-        </div>
-      </main>
+    </main>
     </PageTransition>
   );
 }

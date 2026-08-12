@@ -32,9 +32,9 @@ export function Hero({ movies = [] }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent" />
         <div className="relative z-10 px-6 pb-8">
           <h2 className="font-display font-extrabold text-[32px] text-white mb-1 tracking-tight">
-            My Horror Collection
+            My Collection
           </h2>
-          <p className="text-[14px] text-zinc-400 font-medium">Arsip Personal & Watchlist Horor</p>
+          <p className="text-[14px] text-zinc-400 font-medium">Personal Archive & Watchlist</p>
         </div>
       </section>
     );
