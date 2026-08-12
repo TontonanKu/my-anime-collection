@@ -81,21 +81,13 @@ body {
   scrollbar-width: none;
 }
 
-/* App shell — constrains the app to a mobile viewport on larger screens */
+/* App shell - main container for responsive layout */
 .app-shell {
-  max-width: 430px;
+  width: 100%;
+  max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
   min-height: 100dvh;
   background-color: var(--color-background);
   position: relative;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.06);
-}
-
-@media (min-width: 431px) {
-  #root {
-    background-color: #f2f2f2;
-    padding-top: 24px;
-    padding-bottom: 24px;
-  }
 }

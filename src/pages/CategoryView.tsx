@@ -34,7 +34,7 @@ export function CategoryView() {
   return (
     <PageTransition>
       <Header />
-      <div className="pt-20 px-6">
+      <div className="pt-8 px-6 max-w-[1440px] mx-auto w-full md:px-8">
         <button 
           onClick={() => navigate(-1)} 
           className="flex items-center gap-2 text-secondary hover:text-on-surface transition-colors mb-6"

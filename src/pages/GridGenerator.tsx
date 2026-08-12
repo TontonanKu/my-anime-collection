@@ -46,37 +46,40 @@ export function GridGenerator() {
 
   return (
     <PageTransition>
-      <header className="bg-surface/80 backdrop-blur-md sticky top-0 z-50 flex items-center justify-between px-4 py-4 w-full">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate(-1)}
-            className="w-10 h-10 flex items-center justify-center text-on-surface hover:opacity-70 transition-opacity active:scale-90"
-          >
-            <span className="material-symbols-outlined">arrow_back</span>
-          </button>
-          <h1 className="font-display font-bold text-[18px] text-on-surface">3x3 Grid</h1>
+      <header className="bg-surface/80 backdrop-blur-md sticky top-0 z-50 w-full">
+        <div className="max-w-[1440px] mx-auto w-full flex items-center justify-between px-4 md:px-8 py-4">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate(-1)}
+              className="w-10 h-10 flex items-center justify-center text-on-surface hover:opacity-70 transition-opacity active:scale-90"
+            >
+              <span className="material-symbols-outlined">arrow_back</span>
+            </button>
+            <h1 className="font-display font-bold text-[18px] md:text-[22px] text-on-surface">3x3 Grid</h1>
+          </div>
+          {selectedMovies.length > 0 && (
+            <button
+              onClick={downloadImage}
+              className="bg-primary-container text-white px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-mono uppercase font-bold flex items-center gap-1 active:scale-95"
+            >
+              <span className="material-symbols-outlined" style={{ fontSize: 18 }}>download</span>
+              Save
+            </button>
+          )}
         </div>
-        {selectedMovies.length > 0 && (
-          <button
-            onClick={downloadImage}
-            className="bg-primary-container text-white px-4 py-1.5 rounded-full text-xs font-mono uppercase font-bold flex items-center gap-1 active:scale-95"
-          >
-            <span className="material-symbols-outlined" style={{ fontSize: 16 }}>download</span>
-            Save
-          </button>
-        )}
       </header>
 
-      <main className="px-6 pb-20">
-        <p className="text-secondary text-sm mb-6">
-          Pilih 9 anime favoritmu untuk membuat kolase 3x3 yang bisa di-download dan dibagikan. ({selectedMovies.length}/9)
-        </p>
+      <main className="px-6 md:px-8 pb-20 max-w-[1440px] mx-auto w-full">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-secondary text-sm md:text-base mb-6 text-center">
+            Pilih 9 anime favoritmu untuk membuat kolase 3x3 yang bisa di-download dan dibagikan. ({selectedMovies.length}/9)
+          </p>
 
-        <div className="flex justify-center mb-8">
-          <div 
-            ref={gridRef}
-            className="w-full max-w-[400px] aspect-square bg-surface-container-low p-2 grid grid-cols-3 gap-2 rounded-xl shadow-sm"
-          >
+          <div className="flex justify-center mb-8">
+            <div 
+              ref={gridRef}
+              className="grid grid-cols-3 gap-1 w-full max-w-[360px] aspect-square bg-surface-container p-1 rounded-xl shadow-2xl"
+            >
             {Array.from({ length: 9 }).map((_, i) => {
               const movie = selectedMovies[i];
               return (
@@ -146,6 +149,7 @@ export function GridGenerator() {
             </AnimatePresence>
           </div>
         )}
+        </div>
       </main>
     </PageTransition>
   );

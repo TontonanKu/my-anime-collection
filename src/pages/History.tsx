@@ -40,7 +40,7 @@ export function History() {
     >
       <Header />
       
-      <main className="px-4 pt-4 max-w-2xl mx-auto">
+      <main className="px-4 pt-4 max-w-[1440px] md:px-8 mx-auto w-full">
         {/* Back Button */}
         <button 
           onClick={() => navigate(-1)} 
@@ -58,12 +58,12 @@ export function History() {
         </div>
 
         {/* Search Bar */}
-        <div className="mb-6">
+        <div className="mb-6 max-w-2xl">
           <SearchBar value={query} onChange={setQuery} />
         </div>
 
         {/* Category Filters */}
-        <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2 no-scrollbar">
+        <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 no-scrollbar">
           {['Semua', 'Donghua', 'Anime'].map((cat) => (
             <button
               key={cat}
@@ -80,7 +80,7 @@ export function History() {
         </div>
 
         {/* List */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-4">
           {sortedMovies.length > 0 ? (
             sortedMovies.map((movie) => (
               <Link 
@@ -110,7 +110,7 @@ export function History() {
               </Link>
             ))
           ) : (
-            <div className="text-center py-10 text-secondary">
+            <div className="text-center py-10 text-secondary md:col-span-full">
               Tidak ada hasil yang ditemukan.
             </div>
           )}

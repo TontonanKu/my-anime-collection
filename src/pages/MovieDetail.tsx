@@ -66,14 +66,14 @@ export function MovieDetail() {
       </div>
 
       {/* Content */}
-      <main className="relative z-10 px-6 -mt-[100px]">
-        <div className="flex flex-col gap-6 items-start">
+      <main className="relative z-10 px-6 md:px-12 -mt-[100px] max-w-[1440px] mx-auto w-full pb-12">
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
           {/* Poster */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="w-[150px] shrink-0 rounded-[20px] overflow-hidden ambient-shadow bg-surface-container relative"
+            className="w-[150px] md:w-[250px] lg:w-[300px] shrink-0 rounded-[20px] overflow-hidden ambient-shadow bg-surface-container relative md:-mt-32 md:sticky md:top-24 z-20"
           >
             <img
               className="w-full h-auto object-cover aspect-[2/3]"
@@ -84,8 +84,8 @@ export function MovieDetail() {
           </motion.div>
 
           {/* Title & Metadata */}
-          <div className="flex-grow">
-            <h1 className="font-display font-extrabold text-[28px] leading-tight text-on-surface mb-3">
+          <div className="flex-grow pt-2 md:pt-24 lg:pt-32">
+            <h1 className="font-display font-extrabold text-[28px] md:text-[40px] lg:text-[48px] leading-tight text-on-surface mb-3 md:mb-4">
               {movie.title}
             </h1>
 

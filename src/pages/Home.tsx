@@ -56,29 +56,30 @@ export function Home() {
       <Header />
       <Hero movies={movies} />
 
-      <section className="px-6 mt-6 mb-8">
-        <SearchBar value={query} onChange={setQuery} />
-      </section>
-
-      {isSearch ? (
-        <section className="px-6 pb-12">
-          <div className="flex items-center justify-between mb-5">
-            <h3 className="font-display font-bold text-[20px] text-on-surface tracking-tight">
-              Search Results
-            </h3>
-            <span className="font-mono text-[11px] text-secondary uppercase tracking-widest">
-              {results.length} found
-            </span>
-          </div>
-          <MovieGrid
-            movies={results}
-            isSearch={true}
-          />
+      <div className="max-w-[1440px] mx-auto w-full md:px-8">
+        <section className="px-6 mt-6 mb-8">
+          <SearchBar value={query} onChange={setQuery} />
         </section>
-      ) : (
-        <div className="pb-12 space-y-12">
-          {/* Donghua Section */}
-          <section className="px-6">
+
+        {isSearch ? (
+          <section className="px-6 pb-12">
+            <div className="flex items-center justify-between mb-5">
+              <h3 className="font-display font-bold text-[20px] text-on-surface tracking-tight">
+                Search Results
+              </h3>
+              <span className="font-mono text-[11px] text-secondary uppercase tracking-widest">
+                {results.length} found
+              </span>
+            </div>
+            <MovieGrid
+              movies={results}
+              isSearch={true}
+            />
+          </section>
+        ) : (
+          <div className="pb-12 space-y-12">
+            {/* Donghua Section */}
+            <section className="px-6">
             <div className="flex items-center justify-between mb-5">
               <h3 className="font-display font-bold text-[20px] text-on-surface tracking-tight">
                 Trending Donghua
@@ -116,6 +117,7 @@ export function Home() {
           </section>
         </div>
       )}
+      </div>
     </PageTransition>
   );
 }
