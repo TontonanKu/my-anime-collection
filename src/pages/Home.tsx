@@ -26,13 +26,17 @@ export function Home() {
   );
   const TRENDING_DONGHUA = [
     'Renegade Immortal',
-    'Tales of Herding Gods',
     "Beyond Time's Gaze",
-    'Perfect World',
-    'Soul Land 2',
+    'Oriental Master Academy',
     'One Slash to the heavens',
-    'Tomb of Fallen Gods',
-    'Swallowed Star'
+    'A Good Day to Ascend',
+    'Way of Choices',
+    'Battle Through The Heavens',
+    'Swallowed Star',
+    'Tales of Herding Gods',
+    'The Other Side of Deep Space',
+    'Sword Of Coming',
+    "A Record Of A Mortal's Journey to Immortality"
   ];
 
   const donghuaMovies = useMemo(
