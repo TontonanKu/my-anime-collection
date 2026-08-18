@@ -6,7 +6,7 @@ import { useAuth } from '../hooks/useAuth';
 import { PageTransition } from '../components/PageTransition';
 import type { Movie, WatchStatus } from '../types/movie';
 
-const COLUMNS: WatchStatus[] = ['Anime & Donghua', 'Plan to Watch', 'Watching', 'On Hold', 'Completed'];
+const COLUMNS: WatchStatus[] = ['Plan to Watch', 'Watching', 'On Hold', 'Completed'];
 
 export function Watchboard() {
   const navigate = useNavigate();
@@ -200,10 +200,6 @@ export function Watchboard() {
                 Penjelasan Status
               </h3>
               <div className="space-y-4 font-mono text-sm text-secondary">
-                <div>
-                  <strong className="text-on-surface">Anime & Donghua:</strong>
-                  <p>Daftar utama semua anime dan donghua yang belum ditentukan status tontonannya.</p>
-                </div>
                 <div>
                   <strong className="text-on-surface">Plan to Watch:</strong>
                   <p>Anime/Donghua yang baru direncanakan untuk ditonton di masa depan.</p>
