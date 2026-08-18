@@ -102,27 +102,41 @@ export function MovieDetail() {
       {/* Content */}
       <main className="relative z-10 px-6 md:px-12 -mt-[100px] max-w-[1440px] mx-auto w-full pb-12">
         <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
-          {/* Poster */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="w-[150px] md:w-[250px] lg:w-[300px] shrink-0 rounded-[20px] overflow-hidden ambient-shadow bg-surface-container relative md:-mt-32 z-20"
-          >
-            <AnimatePresence mode="popLayout">
-              <motion.img
-                key={currentPoster}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-auto object-cover aspect-[2/3]"
-                src={currentPoster}
-                alt={`${movie.title} poster`}
-              />
-            </AnimatePresence>
-            <StatusBadge status={displayStatus} />
-          </motion.div>
+          {/* Top Section: Poster + Mobile Season Nav */}
+          <div className="flex gap-6 w-full md:w-auto relative md:-mt-32 z-20 items-end">
+            {/* Poster */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="w-[150px] md:w-[250px] lg:w-[300px] shrink-0 rounded-[20px] overflow-hidden ambient-shadow bg-surface-container relative"
+            >
+              <AnimatePresence mode="popLayout">
+                <motion.img
+                  key={currentPoster}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full h-auto object-cover aspect-[2/3]"
+                  src={currentPoster}
+                  alt={`${movie.title} poster`}
+                />
+              </AnimatePresence>
+              <StatusBadge status={displayStatus} />
+            </motion.div>
+
+            {/* Mobile Season Nav */}
+            <div className="flex-1 md:hidden pb-2">
+              {parsedSeasons.length > 0 && (
+                <GooeySeasonNav 
+                  seasons={parsedSeasons} 
+                  activeSeasonIndex={activeSeasonIndex} 
+                  onSeasonChange={setActiveSeasonIndex} 
+                />
+              )}
+            </div>
+          </div>
 
           {/* Title & Metadata */}
           <div className="flex-grow pt-2 md:pt-24 lg:pt-32">
@@ -180,18 +194,20 @@ export function MovieDetail() {
               </div>
               
               {/* Right Side: Season Nav & Trailer Button */}
-              <div className="shrink-0 md:mt-2 flex flex-col items-start md:items-end">
-                {parsedSeasons.length > 0 && (
-                  <GooeySeasonNav 
-                    seasons={parsedSeasons} 
-                    activeSeasonIndex={activeSeasonIndex} 
-                    onSeasonChange={setActiveSeasonIndex} 
-                  />
-                )}
+              <div className="shrink-0 md:mt-2 flex flex-col items-start md:items-end w-full md:w-auto mt-4 md:mt-0">
+                <div className="hidden md:block">
+                  {parsedSeasons.length > 0 && (
+                    <GooeySeasonNav 
+                      seasons={parsedSeasons} 
+                      activeSeasonIndex={activeSeasonIndex} 
+                      onSeasonChange={setActiveSeasonIndex} 
+                    />
+                  )}
+                </div>
                 {movie.trailerId && (
                   <button
                     onClick={() => setIsTrailerModalOpen(true)}
-                    className="mt-auto flex items-center justify-center gap-2 bg-[#8B0000] hover:bg-[#660000] text-white px-5 py-2.5 rounded-full font-bold text-[13px] tracking-wider transition-colors w-full md:w-fit shadow-lg"
+                    className="mt-2 md:mt-auto flex items-center justify-center gap-2 bg-[#8B0000] hover:bg-[#660000] text-white px-5 py-2.5 rounded-full font-bold text-[13px] tracking-wider transition-colors w-full md:w-fit shadow-lg"
                   >
                     <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
                     TONTON TRAILER
