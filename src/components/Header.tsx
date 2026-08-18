@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useMovies } from '../hooks/useMovies';
+import { useTheme } from '../context/ThemeContext';
 
 export function Header() {
-  const { restoreDummyMovies } = useMovies();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="bg-surface/80 backdrop-blur-md text-primary-container sticky top-0 z-50 w-full">
@@ -12,11 +12,13 @@ export function Header() {
         </Link>
         <div className="flex items-center gap-1.5 md:gap-4">
           <button
-            onClick={restoreDummyMovies}
-            aria-label="Restore Deleted"
-            className="hover:opacity-70 hover:bg-surface-container/60 rounded-full transition-all active:scale-90 flex items-center justify-center text-primary-container p-2"
+            onClick={toggleTheme}
+            aria-label="Toggle Theme"
+            className="hover:opacity-70 hover:bg-surface-container/60 rounded-full transition-all active:scale-90 flex items-center justify-center text-primary-container p-2 mr-1"
           >
-            <span className="material-symbols-outlined text-[22px] text-red-500">restore</span>
+            <span className="material-symbols-outlined text-[22px] md:text-[26px]">
+              {theme === 'dark' ? 'light_mode' : 'dark_mode'}
+            </span>
           </button>
           <Link
             to="/history"
@@ -27,11 +29,11 @@ export function Header() {
             <span className="hidden sm:inline">Riwayat</span>
           </Link>
           <Link
-            to="/grid"
-            aria-label="3x3 Grid Generator"
+            to="/board"
+            aria-label="Watchboard Kanban"
             className="hover:opacity-70 hover:bg-surface-container/60 rounded-full transition-all active:scale-90 flex items-center justify-center text-primary-container p-2"
           >
-            <span className="material-symbols-outlined text-[22px] md:text-[26px]">grid_view</span>
+            <span className="material-symbols-outlined text-[22px] md:text-[26px]">view_kanban</span>
           </Link>
           <Link
             to="/stats"

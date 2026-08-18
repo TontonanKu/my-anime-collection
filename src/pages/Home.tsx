@@ -92,8 +92,9 @@ export function Home() {
               </Link>
             </div>
             <MovieGrid
-              movies={donghuaMovies.slice(0, 8)}
+              movies={donghuaMovies.slice(0, 12)}
               isSearch={false}
+              limitMobile={8}
             />
           </section>
 
@@ -111,8 +112,9 @@ export function Home() {
               </Link>
             </div>
             <MovieGrid
-              movies={animeMovies.slice(0, 8)}
+              movies={animeMovies.slice(0, 12)}
               isSearch={false}
+              limitMobile={8}
             />
           </section>
         </div>

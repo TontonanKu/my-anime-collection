@@ -1,4 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
+import YouTube from 'react-youtube';
+import type { YouTubeEvent, YouTubePlayer } from 'react-youtube';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import type { Movie } from '../types/movie';
@@ -9,22 +11,76 @@ interface HeroProps {
 
 export function Hero({ movies = [] }: HeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  const [videoReady, setVideoReady] = useState(false);
+  const playerRef = useRef<YouTubePlayer>(null);
 
-  // Ambil daftar film favorit atau film dengan rating tertinggi untuk disorot (spotlight)
+  // Ambil top 6 anime dan top 6 donghua untuk disorot (spotlight)
   const spotlightMovies = useMemo(() => {
     if (movies.length === 0) return [];
-    const favorites = movies.filter((m) => m.favorite);
-    if (favorites.length >= 3) return favorites.slice(0, 6);
-    return [...movies].sort((a, b) => b.rating - a.rating).slice(0, 6);
+    
+    const topAnime = [...movies]
+      .filter(m => m.category === 'Anime')
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 6);
+      
+    const topDonghua = [...movies]
+      .filter(m => m.category === 'Donghua')
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 6);
+      
+    // Selang-seling (mix) anime dan donghua
+    const mixed: Movie[] = [];
+    const maxLength = Math.max(topAnime.length, topDonghua.length);
+    for (let i = 0; i < maxLength; i++) {
+      if (topAnime[i]) mixed.push(topAnime[i]);
+      if (topDonghua[i]) mixed.push(topDonghua[i]);
+    }
+    
+    return mixed.length > 0 ? mixed : movies.slice(0, 6);
   }, [movies]);
+
+  const current = spotlightMovies[currentIndex] || spotlightMovies[0];
 
   useEffect(() => {
     if (spotlightMovies.length <= 1) return;
+    
+    // Jika ada trailer, rotasi diatur oleh event onEnd dari YouTube
+    if (current?.trailerId) return;
+
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % spotlightMovies.length);
     }, 6500);
     return () => clearInterval(timer);
-  }, [spotlightMovies.length, currentIndex]);
+  }, [spotlightMovies.length, currentIndex, current?.trailerId]);
+
+  // Reset video state when slide changes
+  useEffect(() => {
+    setVideoReady(false);
+  }, [currentIndex]);
+
+  const toggleMute = () => {
+    if (playerRef.current) {
+      if (isMuted) {
+        playerRef.current.unMute();
+        setIsMuted(false);
+      } else {
+        playerRef.current.mute();
+        setIsMuted(true);
+      }
+    }
+  };
+
+  const onReady = (event: YouTubeEvent) => {
+    playerRef.current = event.target;
+    if (isMuted) {
+      event.target.mute();
+    } else {
+      event.target.unMute();
+    }
+    event.target.playVideo();
+    setVideoReady(true);
+  };
 
   if (spotlightMovies.length === 0) {
     return (
@@ -40,11 +96,9 @@ export function Hero({ movies = [] }: HeroProps) {
     );
   }
 
-  const current = spotlightMovies[currentIndex] || spotlightMovies[0];
-
   return (
-    <section className="relative w-full h-[460px] md:h-[550px] lg:h-[650px] flex flex-col justify-end overflow-hidden bg-zinc-950 border-b border-zinc-800 shadow-xl select-none group">
-      {/* Background Poster / Banner with AnimatePresence */}
+    <div className="w-full max-w-[1440px] mx-auto md:px-6 lg:px-8">
+      <section className="relative w-full h-[460px] md:h-[550px] lg:h-[650px] flex flex-col justify-end overflow-hidden bg-zinc-950 border-b border-zinc-800 shadow-xl select-none group rounded-none md:rounded-b-[2rem]">
       <AnimatePresence mode="wait">
         <motion.div
           key={current.id}
@@ -57,10 +111,48 @@ export function Hero({ movies = [] }: HeroProps) {
         />
       </AnimatePresence>
 
+      {/* YouTube Trailer Background */}
+      {current.trailerId && (
+        <div
+          key={`yt-${current.id}`}
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-700 z-0 ${
+            videoReady ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            width: '100vw',
+            height: '56.25vw',
+            minHeight: '100vh',
+            minWidth: '177.77vh'
+          }}
+        >
+          <YouTube
+            videoId={current.trailerId}
+            opts={{
+              width: '100%',
+              height: '100%',
+              playerVars: {
+                autoplay: 1,
+                controls: 0,
+                disablekb: 1,
+                fs: 0,
+                modestbranding: 1,
+                playsinline: 1,
+                mute: 1,
+              },
+            }}
+            onReady={onReady}
+            onEnd={() => setCurrentIndex((prev) => (prev + 1) % spotlightMovies.length)}
+            onError={() => setCurrentIndex((prev) => (prev + 1) % spotlightMovies.length)}
+            className="w-full h-full"
+            iframeClassName="w-full h-full scale-[1.3] md:scale-[1.2]"
+          />
+        </div>
+      )}
+
       {/* Cinematic Gradients & Vignettes (100% Isolated Dark Palette) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/85 to-transparent opacity-95" />
-      <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/40 to-transparent opacity-80" />
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-zinc-950/90 to-transparent opacity-70" />
+      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/20 to-transparent opacity-90 md:w-3/4 lg:w-2/3" />
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-zinc-950/80 to-transparent opacity-60" />
 
       {/* Spotlight Content */}
       <div className="max-w-[1440px] mx-auto w-full relative z-10">
@@ -101,7 +193,7 @@ export function Hero({ movies = [] }: HeroProps) {
               <span className="text-zinc-200">{current.duration}</span>
               <span className="text-zinc-500">?</span>
               <span className="text-emerald-400 text-[11px] md:text-xs font-mono uppercase bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
-                {current.status === 'Watched' ? 'Ditonton' : 'Watchlist'}
+                {current.status === 'Completed' ? 'Tamat' : 'Watchlist'}
               </span>
             </div>
 
@@ -129,6 +221,20 @@ export function Hero({ movies = [] }: HeroProps) {
                 >
                   <span className="material-symbols-outlined text-[18px] md:text-[22px] text-zinc-200">shuffle</span>
                 </button>
+                {/* Mute Button */}
+                {current.trailerId && videoReady && (
+                  <button
+                    type="button"
+                    onClick={toggleMute}
+                    aria-label={isMuted ? "Unmute Trailer" : "Mute Trailer"}
+                    title={isMuted ? "Unmute Trailer" : "Mute Trailer"}
+                    className="bg-zinc-800/80 hover:bg-zinc-700 backdrop-blur-md text-white p-2.5 md:p-3 rounded-xl md:rounded-2xl border border-zinc-700/80 shadow-md flex items-center justify-center transition-all active:scale-90 cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-[18px] md:text-[22px] text-zinc-200">
+                      {isMuted ? 'volume_off' : 'volume_up'}
+                    </span>
+                  </button>
+                )}
               </div>
 
               {/* Dots */}
@@ -152,6 +258,7 @@ export function Hero({ movies = [] }: HeroProps) {
         </AnimatePresence>
       </div>
     </section>
+    </div>
   );
 }
 

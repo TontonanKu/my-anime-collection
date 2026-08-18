@@ -3,26 +3,26 @@
 @import "tailwindcss";
 
 @theme {
-  /* Gallery Macabre design tokens (from Stitch design system) */
-  --color-primary: #91000a;
-  --color-on-primary: #ffffff;
-  --color-primary-container: #b71c1c;
-  --color-on-primary-container: #ffcac4;
+  /* Dynamic tokens mapping to CSS variables */
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
 
-  --color-secondary: #666666;
-  --color-on-surface: #111111;
-  --color-on-surface-variant: #5b403d;
+  --color-secondary: var(--secondary);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
 
-  --color-background: #ffffff;
-  --color-surface: #ffffff;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f9f9f9;
-  --color-surface-container: #f5f5f5;
-  --color-surface-container-high: #ececec;
-  --color-surface-variant: #ececec;
-  --color-outline: #8f706c;
-  --color-outline-variant: #ececec;
-  --color-border: #ececec;
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-variant: var(--surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-border: var(--border);
 
   --font-display: "Manrope", sans-serif;
   --font-headline: "Manrope", sans-serif;
@@ -33,6 +33,46 @@
   --spacing-stack-gap: 32px;
   --spacing-grid-gutter: 16px;
   --spacing-section-margin: 48px;
+}
+
+:root {
+  --primary: #91000a;
+  --on-primary: #ffffff;
+  --primary-container: #b71c1c;
+  --on-primary-container: #ffcac4;
+  --secondary: #666666;
+  --on-surface: #111111;
+  --on-surface-variant: #5b403d;
+  --background: #ffffff;
+  --surface: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f9f9f9;
+  --surface-container: #f5f5f5;
+  --surface-container-high: #ececec;
+  --surface-variant: #ececec;
+  --outline: #8f706c;
+  --outline-variant: #ececec;
+  --border: #ececec;
+}
+
+.dark {
+  --primary: #ffb4ab;
+  --on-primary: #690005;
+  --primary-container: #93000a;
+  --on-primary-container: #ffdad6;
+  --secondary: #a09f9f;
+  --on-surface: #e6e1e0;
+  --on-surface-variant: #d8c2bf;
+  --background: #120d0c;
+  --surface: #120d0c;
+  --surface-container-lowest: #0b0707;
+  --surface-container-low: #1a1211;
+  --surface-container: #1e1514;
+  --surface-container-high: #281c1b;
+  --surface-variant: #534341;
+  --outline: #a08c89;
+  --outline-variant: #534341;
+  --border: #332725;
 }
 
 * {
@@ -61,7 +101,7 @@ body {
 }
 
 .fog-gradient {
-  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(to bottom, transparent 60%, var(--surface) 100%);
 }
 
 .ambient-shadow {
@@ -90,4 +130,24 @@ body {
   min-height: 100dvh;
   background-color: var(--color-background);
   position: relative;
+}
+
+/* Custom Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-variant);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-variant) transparent;
 }

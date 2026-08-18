@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useMovies } from '../hooks/useMovies';
 import { PageTransition } from '../components/PageTransition';
+import { ImageUpload } from '../components/ImageUpload';
 
 const AVAILABLE_GENRES = [
   'Slasher',
@@ -344,34 +345,20 @@ export function AddMovie() {
           </div>
 
           <div className="flex gap-4 items-start">
-            <div className="flex-1 flex flex-col gap-3">
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="poster" className="text-xs font-mono text-secondary uppercase font-semibold">
-                  Poster Image URL
-                </label>
-                <input
-                  id="poster"
-                  type="url"
-                  value={poster}
-                  onChange={(e) => setPoster(e.target.value)}
-                  placeholder="https://..."
-                  className="bg-surface text-on-surface px-3.5 py-2.5 rounded-xl border border-border text-xs font-mono focus:outline-none focus:border-primary-container"
-                />
-              </div>
+            <div className="flex-1 flex flex-col gap-6">
+              <ImageUpload
+                label="Poster Image"
+                value={poster}
+                onChange={setPoster}
+                placeholder="https://..."
+              />
 
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="banner" className="text-xs font-mono text-secondary uppercase font-semibold">
-                  Banner / Backdrop URL (Optional)
-                </label>
-                <input
-                  id="banner"
-                  type="url"
-                  value={banner}
-                  onChange={(e) => setBanner(e.target.value)}
-                  placeholder="Leave empty to use poster image..."
-                  className="bg-surface text-on-surface px-3.5 py-2.5 rounded-xl border border-border text-xs font-mono focus:outline-none focus:border-primary-container"
-                />
-              </div>
+              <ImageUpload
+                label="Banner / Backdrop (Optional)"
+                value={banner}
+                onChange={setBanner}
+                placeholder="Leave empty to use poster image..."
+              />
             </div>
 
             {/* Thumbnail Preview */}

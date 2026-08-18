@@ -1,4 +1,4 @@
-export type WatchStatus = 'Watched';
+export type WatchStatus = 'Anime & Donghua' | 'Plan to Watch' | 'Watching' | 'Completed' | 'On Hold';
 
 export interface Movie {
   id: number;
@@ -23,4 +23,18 @@ export interface Movie {
   progress?: string;
   category?: 'Anime' | 'Donghua';
   trailerId?: string;
+  order?: number;
+  seasonData?: string;
+  characters?: Array<{
+    id: number;
+    name: string;
+    image: string;
+    role: string;
+    voiceActor?: {
+      id: number;
+      name: string;
+      image: string;
+      language: string;
+    };
+  }>;
 }

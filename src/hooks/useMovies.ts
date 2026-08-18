@@ -1,7 +1,9 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import moviesSeed from '../data/movies.json';
-import type { Movie } from '../types/movie';
+import type { Movie, WatchStatus } from '../types/movie';
+import { supabase } from '../lib/supabase';
 
+// Local storage keys for fallback/offline
 const STORAGE_KEY = 'horror-collection:overrides';
 const CUSTOM_MOVIES_KEY = 'horror-collection:custom-movies';
 const DELETED_MOVIES_KEY = 'horror-collection:deleted-movies';
@@ -11,58 +13,35 @@ interface Overrides {
     favorite?: boolean;
     note?: string;
     personalRating?: number;
+    poster?: string;
+    banner?: string;
+    status?: import('../types/movie').WatchStatus;
+    progress?: string;
+    order?: number;
+    seasonData?: string;
   };
 }
 
-function loadOverrides(): Overrides {
+interface AppData {
+  overrides: Overrides;
+  customMovies: Movie[];
+  deletedIds: number[];
+}
+
+// Fallback loaders
+function loadLocal<T>(key: string, fallback: T): T {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Overrides) : {};
+    const raw = localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as T) : fallback;
   } catch {
-    return {};
+    return fallback;
   }
 }
 
-function saveOverrides(overrides: Overrides) {
+function saveLocal(key: string, data: any) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(overrides));
-  } catch {
-    // localStorage unavailable — fail silently, data just won't persist
-  }
-}
-
-function loadCustomMovies(): Movie[] {
-  try {
-    const raw = localStorage.getItem(CUSTOM_MOVIES_KEY);
-    return raw ? (JSON.parse(raw) as Movie[]) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveCustomMovies(movies: Movie[]) {
-  try {
-    localStorage.setItem(CUSTOM_MOVIES_KEY, JSON.stringify(movies));
-  } catch {
-    // localStorage unavailable
-  }
-}
-
-function loadDeletedIds(): number[] {
-  try {
-    const raw = localStorage.getItem(DELETED_MOVIES_KEY);
-    return raw ? (JSON.parse(raw) as number[]) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveDeletedIds(ids: number[]) {
-  try {
-    localStorage.setItem(DELETED_MOVIES_KEY, JSON.stringify(ids));
-  } catch {
-    // localStorage unavailable
-  }
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch {}
 }
 
 function applyOverrides(movies: Movie[], overrides: Overrides): Movie[] {
@@ -74,14 +53,72 @@ function applyOverrides(movies: Movie[], overrides: Overrides): Movie[] {
       favorite: o.favorite ?? m.favorite,
       note: o.note ?? m.note,
       personalRating: o.personalRating ?? m.personalRating,
+      poster: o.poster ?? m.poster,
+      banner: o.banner ?? m.banner,
+      status: o.status ?? m.status,
+      progress: o.progress ?? m.progress,
+      order: o.order ?? m.order,
+      seasonData: o.seasonData ?? m.seasonData,
     };
   });
 }
 
 export function useMovies() {
-  const [overrides, setOverrides] = useState<Overrides>(loadOverrides);
-  const [customMovies, setCustomMovies] = useState<Movie[]>(loadCustomMovies);
-  const [deletedIds, setDeletedIds] = useState<number[]>(loadDeletedIds);
+  const [overrides, setOverrides] = useState<Overrides>(() => loadLocal(STORAGE_KEY, {}));
+  const [customMovies, setCustomMovies] = useState<Movie[]>(() => loadLocal(CUSTOM_MOVIES_KEY, []));
+  const [deletedIds, setDeletedIds] = useState<number[]>(() => loadLocal(DELETED_MOVIES_KEY, []));
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Fetch from Supabase on mount
+  useEffect(() => {
+    async function fetchData() {
+      const { data, error } = await supabase
+        .from('app_data')
+        .select('data')
+        .eq('id', 1)
+        .single();
+      
+      if (!error && data?.data) {
+        const cloudData = data.data as AppData;
+        if (cloudData.overrides) {
+          setOverrides(cloudData.overrides);
+          saveLocal(STORAGE_KEY, cloudData.overrides);
+        }
+        if (cloudData.customMovies) {
+          setCustomMovies(cloudData.customMovies);
+          saveLocal(CUSTOM_MOVIES_KEY, cloudData.customMovies);
+        }
+        if (cloudData.deletedIds) {
+          setDeletedIds(cloudData.deletedIds);
+          saveLocal(DELETED_MOVIES_KEY, cloudData.deletedIds);
+        }
+      }
+      setIsLoaded(true);
+    }
+    fetchData();
+  }, []);
+
+  // Sync to Cloud
+  const syncToCloud = useCallback(async (newData: Partial<AppData>) => {
+    // Current state + new changes
+    const payload = {
+      overrides,
+      customMovies,
+      deletedIds,
+      ...newData
+    };
+    
+    // Save locally immediately for snappy UI
+    if (newData.overrides) saveLocal(STORAGE_KEY, newData.overrides);
+    if (newData.customMovies) saveLocal(CUSTOM_MOVIES_KEY, newData.customMovies);
+    if (newData.deletedIds) saveLocal(DELETED_MOVIES_KEY, newData.deletedIds);
+
+    // Sync to Supabase in background
+    if (isLoaded) {
+      await supabase.from('app_data').upsert({ id: 1, data: payload });
+    }
+  }, [overrides, customMovies, deletedIds, isLoaded]);
+
 
   const movies = useMemo(
     () =>
@@ -95,11 +132,18 @@ export function useMovies() {
     (id: number, patch: Overrides[number]) => {
       setOverrides((prev) => {
         const next = { ...prev, [id]: { ...prev[id], ...patch } };
-        saveOverrides(next);
+        syncToCloud({ overrides: next });
         return next;
       });
     },
-    [],
+    [syncToCloud],
+  );
+
+  const updateMetadata = useCallback(
+    (id: number, poster: string, banner: string, seasonData?: string, status?: WatchStatus, progress?: string) => {
+      updateOverride(id, { poster, banner, seasonData, ...(status && { status }), ...(progress && { progress }) });
+    },
+    [updateOverride]
   );
 
   const toggleFavorite = useCallback(
@@ -118,6 +162,27 @@ export function useMovies() {
     [updateOverride],
   );
 
+  const updateStatus = useCallback(
+    (id: number, status: import('../types/movie').WatchStatus) => {
+      updateOverride(id, { status });
+    },
+    [updateOverride],
+  );
+
+  const updateProgress = useCallback(
+    (id: number, progress: string) => {
+      updateOverride(id, { progress });
+    },
+    [updateOverride],
+  );
+
+  const updateOrder = useCallback(
+    (id: number, order: number) => {
+      updateOverride(id, { order });
+    },
+    [updateOverride]
+  );
+
   const setPersonalRating = useCallback(
     (id: number, personalRating: number) => {
       updateOverride(id, { personalRating });
@@ -131,40 +196,48 @@ export function useMovies() {
       const movie: Movie = {
         ...newMovieData,
         id,
-        status: 'Watched',
+        status: 'Anime & Donghua',
       };
       setCustomMovies((prev) => {
         const next = [movie, ...prev];
-        saveCustomMovies(next);
+        syncToCloud({ customMovies: next });
         return next;
       });
       return id;
     },
-    [],
+    [syncToCloud],
   );
 
   const deleteMovie = useCallback(
     (id: number) => {
+      let nextDeletedIds = deletedIds;
+      let nextCustomMovies = customMovies;
+      let nextOverrides = overrides;
+
       setDeletedIds((prev) => {
         if (prev.includes(id)) return prev;
-        const next = [...prev, id];
-        saveDeletedIds(next);
-        return next;
+        nextDeletedIds = [...prev, id];
+        return nextDeletedIds;
       });
       setCustomMovies((prev) => {
-        const next = prev.filter((m) => m.id !== id);
-        saveCustomMovies(next);
-        return next;
+        nextCustomMovies = prev.filter((m) => m.id !== id);
+        return nextCustomMovies;
       });
       setOverrides((prev) => {
         if (!(id in prev)) return prev;
-        const next = { ...prev };
-        delete next[id];
-        saveOverrides(next);
-        return next;
+        nextOverrides = { ...prev };
+        delete nextOverrides[id];
+        return nextOverrides;
+      });
+
+      // Sync all changes at once
+      syncToCloud({
+        deletedIds: nextDeletedIds,
+        customMovies: nextCustomMovies,
+        overrides: nextOverrides
       });
     },
-    [],
+    [deletedIds, customMovies, overrides, syncToCloud],
   );
 
   const hasDummyMovies = useMemo(
@@ -176,19 +249,19 @@ export function useMovies() {
     const seedIds = (moviesSeed as Movie[]).map((m) => m.id);
     setDeletedIds((prev) => {
       const next = Array.from(new Set([...prev, ...seedIds]));
-      saveDeletedIds(next);
+      syncToCloud({ deletedIds: next });
       return next;
     });
-  }, []);
+  }, [syncToCloud]);
 
   const restoreDummyMovies = useCallback(() => {
     const seedIds = (moviesSeed as Movie[]).map((m) => m.id);
     setDeletedIds((prev) => {
       const next = prev.filter((id) => !seedIds.includes(id));
-      saveDeletedIds(next);
+      syncToCloud({ deletedIds: next });
       return next;
     });
-  }, []);
+  }, [syncToCloud]);
 
   const isCustomMovie = useCallback(
     (id: number) => customMovies.some((m) => m.id === id),
@@ -205,14 +278,17 @@ export function useMovies() {
     toggleFavorite, 
     setNote, 
     setPersonalRating, 
+    updateMetadata,
     getById, 
     addMovie, 
     deleteMovie, 
+    updateStatus,
+    updateProgress,
+    updateOrder,
     isCustomMovie,
     hasDummyMovies,
     clearDummyMovies,
-    restoreDummyMovies
+    restoreDummyMovies,
+    isLoaded
   };
 }
-
-

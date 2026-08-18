@@ -8,8 +8,9 @@ import { AddMovie } from './pages/AddMovie';
 import { CategoryView } from './pages/CategoryView';
 import { LoginGate } from './components/LoginGate';
 import { NotFound } from './pages/NotFound';
-import { GridGenerator } from './pages/GridGenerator';
+import { EditMovie } from './pages/EditMovie';
 import { History } from './pages/History';
+import { Watchboard } from './pages/Watchboard';
 
 function App() {
   const location = useLocation();
@@ -24,11 +25,12 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
+          <Route path="/movie/:id/edit" element={<LoginGate><EditMovie /></LoginGate>} />
           <Route path="/stats" element={<Stats />} />
           <Route path="/add" element={<LoginGate><AddMovie /></LoginGate>} />
           <Route path="/history" element={<History />} />
           <Route path="/category/:type" element={<CategoryView />} />
-          <Route path="/grid" element={<GridGenerator />} />
+          <Route path="/board" element={<Watchboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
